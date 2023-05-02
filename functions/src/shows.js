@@ -20,7 +20,7 @@ export async function addShow(req, res) {
   }
 
   const decoded = jwt.verify(token, secretKey) // verifies token and assures user is authorize
-  if(!decoded) 
+  if(!decoded) {
     res.status(401).send({ message:"A valid token is required." })
     return 
   }
@@ -39,3 +39,4 @@ export async function addShow(req, res) {
   
   await collection.add(newShow) // add new show
   getShows(req, res) // return the updated list
+}
